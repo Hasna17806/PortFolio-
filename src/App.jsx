@@ -1,4 +1,3 @@
-// App.jsx - Hasna Portfolio — Refined Editorial Theme (Updated)
 import React, { useState, useEffect, useRef } from "react";
 
 const App = () => {
@@ -398,7 +397,7 @@ const App = () => {
           <div style={{ maxWidth: 820 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 32, animation: "fadeUp 0.6s 0.1s both" }}>
               <div style={{ width: 40, height: 1, background: "#6EC6BE" }} />
-              <span style={{ fontSize: "0.75rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "#6EC6BE", fontWeight: 500 }}>MERN Stack Developer · Frontend Developer · React.js Developer</span>
+              <span style={{ fontSize: "0.75rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "#6EC6BE", fontWeight: 500 }}>MERN Stack Developer · Frontend Developer · Backend Developer</span>
             </div>
 
             <h1 className="hero-heading" style={{
