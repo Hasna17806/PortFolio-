@@ -1,4 +1,4 @@
-// App.jsx - Hasna Portfolio — Refined Editorial Theme
+// App.jsx - Hasna Portfolio — Refined Editorial Theme (Updated)
 import React, { useState, useEffect, useRef } from "react";
 
 const App = () => {
@@ -56,14 +56,20 @@ const App = () => {
   };
 
   const skills = [
-    { name: "React", level: 80, cat: "Frontend" },
+    { name: "React.js", level: 80, cat: "Frontend" },
     { name: "JavaScript", level: 85, cat: "Frontend" },
     { name: "HTML5 & CSS3", level: 99, cat: "Frontend" },
     { name: "Tailwind CSS", level: 82, cat: "Frontend" },
+    { name: "Redux", level: 75, cat: "Frontend" },
     { name: "Node.js", level: 75, cat: "Backend" },
-    { name: "Express", level: 75, cat: "Backend" },
-    { name: "MongoDB", level: 70, cat: "Backend" },
+    { name: "Express.js", level: 75, cat: "Backend" },
+    { name: "REST APIs", level: 78, cat: "Backend" },
+    { name: "MongoDB", level: 70, cat: "Database" },
+    { name: "PostgreSQL", level: 45, cat: "Database" },
     { name: "Figma", level: 95, cat: "Tools" },
+    { name: "Git & GitHub", level: 80, cat: "Tools" },
+    { name: "Postman", level: 78, cat: "Tools" },
+    { name: "DSA", level: 60, cat: "Concepts" },
   ];
 
   const projects = [
@@ -71,27 +77,27 @@ const App = () => {
       title: "Zenly",
       year: "2026",
       tagline: "Student wellbeing platform for mental health support",
-      tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
+      tech: ["React.js", "Node.js", "Express.js", "MongoDB", "Figma"],
       github: "https://github.com/Hasna17806/Zenly",
-      features: ["Mood tracking", "Focus sessions", "Chat support", "Progress analytics"],
+      features: ["Mood tracking", "Focus sessions", "Challenge activities", "Figma UI/UX"],
       index: "01",
     },
     {
       title: "BagHaven",
       year: "2025",
       tagline: "Full-stack e-commerce platform for bags",
-      tech: ["React", "Node.js", "Express", "MongoDB", "Redux"],
+      tech: ["React.js", "Node.js", "Express.js", "MongoDB"],
       github: "https://github.com/Hasna17806/BagHaven",
-      features: ["User auth", "Product catalog", "Cart management", "Payment integration"],
+      features: ["User auth", "Shopping cart", "CRUD operations", "Backend integration"],
       index: "02",
     },
     {
       title: "Zyra",
       year: "2025",
-      tagline: "Frontend e-commerce platform with modern UI",
-      tech: ["React", "Tailwind CSS", "Framer Motion"],
+      tagline: "Responsive React e-commerce website with modern UI",
+      tech: ["React.js", "JavaScript", "Tailwind CSS", "HTML5"],
       github: "https://zyra-xi.vercel.app/",
-      features: ["Responsive design", "Product filtering", "Shopping cart", "Animations"],
+      features: ["Reusable components", "Product listing", "Mock backend", "Responsive design"],
       index: "03",
     },
   ];
@@ -200,6 +206,21 @@ const App = () => {
           border-color: #6EC6BE; transform: translateY(-2px);
         }
 
+        .repo-btn {
+          display: inline-flex; align-items: center; gap: 8px;
+          padding: 8px 18px; background: transparent; color: #6EC6BE;
+          font-family: 'DM Sans', sans-serif; font-size: 0.75rem;
+          font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+          border: 1px solid rgba(110, 198, 190, 0.3); cursor: pointer;
+          transition: all 0.3s ease; text-decoration: none; flex-shrink: 0;
+          clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+        }
+        .repo-btn:hover {
+          background: rgba(110, 198, 190, 0.1);
+          border-color: #6EC6BE;
+          transform: translateY(-1px);
+        }
+
         .project-row {
           border-top: 1px solid rgba(255,255,255,0.07);
           transition: all 0.4s ease;
@@ -210,7 +231,7 @@ const App = () => {
         .project-row:hover .proj-index { color: #6EC6BE; }
         .project-row:hover .proj-arrow { transform: translate(4px, -4px); opacity: 1; }
 
-        .proj-arrow { opacity: 0; transition: all 0.3s ease; }
+        .proj-arrow { opacity: 0.3; transition: all 0.3s ease; }
 
         .skill-pill {
           display: inline-flex; align-items: center; gap: 8px;
@@ -226,6 +247,12 @@ const App = () => {
         }
         .skill-pill:hover { border-color: rgba(110, 198, 190, 0.4); color: #6EC6BE; }
         .skill-pill:hover::before { transform: translateX(0); }
+
+        .skill-cat-label {
+          font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+          color: #3D6B68; font-weight: 600; padding: 0 6px;
+          border-left: 2px solid #3D6B68; margin-left: 4px;
+        }
 
         .social-icon {
           width: 42px; height: 42px;
@@ -277,12 +304,27 @@ const App = () => {
           position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none;
         }
 
+        .exp-card {
+          padding: 28px 32px;
+          border: 1px solid rgba(255,255,255,0.06);
+          background: rgba(255,255,255,0.02);
+          position: relative;
+          clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+        }
+        .exp-card::before {
+          content: ''; position: absolute; top: 0; left: 0;
+          width: 3px; height: 100%; background: linear-gradient(to bottom, #6EC6BE, transparent);
+        }
+
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
           .mobile-btn { display: flex !important; }
           .hero-heading { font-size: clamp(2.8rem, 12vw, 4rem) !important; }
           .about-grid { grid-template-columns: 1fr !important; }
           .stat-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .contact-grid { grid-template-columns: 1fr !important; }
+          .project-inner { grid-template-columns: 60px 1fr !important; }
+          .project-inner .proj-bottom { grid-column: 1 / -1; }
         }
         @media (min-width: 769px) {
           .mobile-btn { display: none !important; }
@@ -356,7 +398,7 @@ const App = () => {
           <div style={{ maxWidth: 820 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 32, animation: "fadeUp 0.6s 0.1s both" }}>
               <div style={{ width: 40, height: 1, background: "#6EC6BE" }} />
-              <span style={{ fontSize: "0.75rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "#6EC6BE", fontWeight: 500 }}>MERN Stack Developer</span>
+              <span style={{ fontSize: "0.75rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "#6EC6BE", fontWeight: 500 }}>MERN Stack Developer · Frontend Developer · React.js Developer</span>
             </div>
 
             <h1 className="hero-heading" style={{
@@ -371,9 +413,9 @@ const App = () => {
 
             <p style={{
               fontSize: "1.05rem", lineHeight: 1.75, color: "#8A8480",
-              maxWidth: 540, marginBottom: 48, animation: "fadeUp 0.7s 0.35s both",
+              maxWidth: 560, marginBottom: 48, animation: "fadeUp 0.7s 0.35s both",
             }}>
-              Crafting responsive, thoughtful web experiences with modern technologies — from pixel-perfect interfaces to robust APIs.
+              Crafting responsive, thoughtful web experiences with modern technologies — from pixel-perfect interfaces to robust REST APIs. Currently deepening my problem-solving skills through DSA.
             </p>
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginBottom: 80, animation: "fadeUp 0.7s 0.45s both" }}>
@@ -387,7 +429,7 @@ const App = () => {
             </div>
 
             <div className="stat-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, maxWidth: 480, animation: "fadeUp 0.7s 0.55s both" }}>
-              {[["3+", "Projects"], ["1+", "Years Exp."], ["9+", "Technologies"]].map(([num, label]) => (
+              {[["3+", "Projects"], ["1+", "Years Exp."], ["14+", "Technologies"]].map(([num, label]) => (
                 <div key={label} className="stat-card">
                   <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "2rem", fontWeight: 700, color: "#6EC6BE", lineHeight: 1 }}>{num}</div>
                   <div style={{ fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#5A5652", marginTop: 6, fontWeight: 500 }}>{label}</div>
@@ -417,11 +459,37 @@ const App = () => {
           >
             <div className={`reveal ${visibleSections.has("about") ? "visible" : ""}`} data-animate="about">
               <p style={{ fontSize: "1.1rem", lineHeight: 1.85, color: "#8A8480", marginBottom: 28 }}>
-                I'm a passionate MERN Stack Developer with a strong foundation in modern web technologies. I love creating clean, efficient, and user-friendly applications that solve real-world problems.
+                I'm a motivated MERN Stack Developer with one year of internship experience designing and building responsive, user-focused web applications. I love creating clean, efficient solutions that tackle real-world problems.
               </p>
               <p style={{ fontSize: "1.1rem", lineHeight: 1.85, color: "#8A8480", marginBottom: 40 }}>
-                My journey started with curiosity for how websites work — and quickly became a deep passion for both the creative and technical sides of development.
+                My journey started with curiosity about how websites work — and quickly became a deep passion for both the creative and technical sides of development. I'm currently strengthening my problem-solving skills through Data Structures & Algorithms.
               </p>
+
+              {/* Experience Card */}
+              <div className="exp-card" style={{ marginBottom: 28 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 12, flexWrap: "wrap", gap: 8 }}>
+                  <div>
+                    <div style={{ fontSize: "0.7rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "#6EC6BE", fontWeight: 600, marginBottom: 4 }}>Experience</div>
+                    <div style={{ fontSize: "1rem", fontWeight: 600, color: "#E8E6E1" }}>MERN Stack Developer Intern</div>
+                    <div style={{ fontSize: "0.85rem", color: "#8A8480", marginTop: 2 }}>Zaitoon International Campus</div>
+                  </div>
+                  <span style={{ fontSize: "0.72rem", letterSpacing: "0.08em", color: "#5A5652", background: "rgba(255,255,255,0.04)", padding: "4px 10px", border: "1px solid rgba(255,255,255,0.07)", flexShrink: 0 }}>2025 – 2026</span>
+                </div>
+                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 6 }}>
+                  {[
+                    "Developed responsive web apps using the MERN Stack",
+                    "Built reusable React components & responsive UIs",
+                    "Integrated REST APIs & connected frontend with backend services",
+                    "Worked with MongoDB for database design & CRUD operations",
+                  ].map((item) => (
+                    <li key={item} style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: "0.82rem", color: "#5A5652", lineHeight: 1.6 }}>
+                      <span style={{ color: "#6EC6BE", marginTop: 4, flexShrink: 0, fontSize: "0.55rem" }}>◆</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
                 {[
                   {
@@ -431,7 +499,7 @@ const App = () => {
                         <circle cx="12" cy="9" r="2.5"/>
                       </svg>
                     ),
-                    text: "Based in India"
+                    text: "Based in Kerala, India"
                   },
                   {
                     icon: (
@@ -440,12 +508,20 @@ const App = () => {
                         <path d="M8 21h8M12 17v4"/>
                       </svg>
                     ),
-                    text: "Full Stack Developer"
+                    text: "Full Stack Developer — Open to opportunities & collaborations"
+                  },
+                  {
+                    icon: (
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6EC6BE" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                      </svg>
+                    ),
+                    text: "Languages: English · Malayalam"
                   },
                 ].map(({ icon, text }) => (
-                  <div key={text} style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                  <div key={text} style={{ display: "flex", alignItems: "flex-start", gap: 14 }}>
                     <span style={{ width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(110,198,190,0.08)", flexShrink: 0 }}>{icon}</span>
-                    <span style={{ fontSize: "0.9rem", color: "#C8C5C0", letterSpacing: "0.02em" }}>{text}</span>
+                    <span style={{ fontSize: "0.875rem", color: "#C8C5C0", letterSpacing: "0.02em", lineHeight: 1.6, paddingTop: 6 }}>{text}</span>
                   </div>
                 ))}
               </div>
@@ -453,9 +529,10 @@ const App = () => {
 
             <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               {[
-                { title: "Frontend Development", desc: "Responsive SPAs with React, Tailwind CSS & modern animations", icon: "⬡" },
-                { title: "Backend Development", desc: "RESTful APIs with Node.js & Express for scalable services", icon: "⬡" },
-                { title: "Database Management", desc: "MongoDB & Mongoose for efficient, well-modeled data", icon: "⬡" },
+                { title: "Frontend Development", desc: "Responsive SPAs with React.js, Redux, Tailwind CSS & modern animations", icon: "⬡" },
+                { title: "Backend Development", desc: "RESTful APIs with Node.js & Express.js for scalable, maintainable services", icon: "⬡" },
+                { title: "Database Management", desc: "MongoDB & Mongoose for efficient, well-modeled data — with growing PostgreSQL knowledge", icon: "⬡" },
+                { title: "UI/UX & Tooling", desc: "End-to-end Figma design, Git version control, and API testing with Postman", icon: "⬡" },
               ].map((svc, i) => (
                 <div key={svc.title}
                   className={`reveal reveal-delay-${i + 1} ${visibleSections.has("about") ? "visible" : ""}`}
@@ -488,24 +565,38 @@ const App = () => {
             <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#3D6B68" }}>Skills</span>
           </div>
 
-          <div data-animate="skills" style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-            {skills.map((skill, i) => (
-              <div key={skill.name}
-                className={`skill-pill reveal reveal-delay-${Math.min(i + 1, 5)} ${visibleSections.has("skills") ? "visible" : ""}`}
-                data-animate="skills"
-              >
-                <div style={{ width: 28, height: 3, background: "rgba(110,198,190,0.3)", borderRadius: 2, overflow: "hidden" }}>
-                  <div style={{
-                    height: "100%", background: "#6EC6BE", borderRadius: 2,
-                    width: visibleSections.has("skills") ? `${skill.level}%` : "0%",
-                    transition: `width 1.2s ${i * 0.08}s ease`,
-                  }} />
+          {/* Group skills by category */}
+          {["Frontend", "Backend", "Database", "Tools", "Concepts"].map((cat) => {
+            const catSkills = skills.filter((s) => s.cat === cat);
+            return (
+              <div key={cat} style={{ marginBottom: 36 }} data-animate="skills">
+                <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
+                  <span style={{ fontSize: "0.65rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "#3D6B68", fontWeight: 700 }}>{cat}</span>
+                  <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.05)", maxWidth: 80 }} />
                 </div>
-                <span style={{ color: "#C8C5C0" }}>{skill.name}</span>
-                <span style={{ color: "#3D6B68", fontSize: "0.7rem", fontWeight: 600, marginLeft: "auto" }}>{skill.level}%</span>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+                  {catSkills.map((skill, i) => (
+                    <div key={skill.name}
+                      className={`skill-pill reveal reveal-delay-${Math.min(i + 1, 5)} ${visibleSections.has("skills") ? "visible" : ""}`}
+                      data-animate="skills"
+                    >
+                      <div style={{ width: 28, height: 3, background: "rgba(110,198,190,0.3)", borderRadius: 2, overflow: "hidden" }}>
+                        <div style={{
+                          height: "100%", background: skill.level < 55 ? "rgba(110,198,190,0.5)" : "#6EC6BE", borderRadius: 2,
+                          width: visibleSections.has("skills") ? `${skill.level}%` : "0%",
+                          transition: `width 1.2s ${i * 0.08}s ease`,
+                        }} />
+                      </div>
+                      <span style={{ color: "#C8C5C0" }}>{skill.name}</span>
+                      {skill.level < 55 && (
+                        <span style={{ fontSize: "0.6rem", color: "#3D6B68", fontStyle: "italic", marginLeft: 2 }}>learning</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </section>
 
@@ -520,34 +611,58 @@ const App = () => {
 
           <div data-animate="projects">
             {projects.map((proj, i) => (
-              <a key={proj.title} href={proj.github} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "inherit" }}>
-                <div
-                  className={`project-row reveal reveal-delay-${i + 1} ${visibleSections.has("projects") ? "visible" : ""}`}
-                  data-animate="projects"
-                  style={{ padding: "36px 0", display: "grid", gridTemplateColumns: "80px 1fr auto", gap: 40, alignItems: "center" }}
-                >
+              <div
+                key={proj.title}
+                className={`project-row reveal reveal-delay-${i + 1} ${visibleSections.has("projects") ? "visible" : ""}`}
+                data-animate="projects"
+                style={{ padding: "36px 0" }}
+              >
+                <div className="project-inner" style={{ display: "grid", gridTemplateColumns: "80px 1fr auto", gap: 40, alignItems: "center" }}>
                   <span className="proj-index" style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontSize: "1.5rem", color: "#3D4A48", transition: "color 0.3s" }}>{proj.index}</span>
 
                   <div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 12 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 12, flexWrap: "wrap" }}>
                       <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.4rem, 2.5vw, 2rem)", fontWeight: 700 }}>{proj.title}</h3>
                       <span style={{ fontSize: "0.7rem", color: "#5A5652", letterSpacing: "0.08em" }}>{proj.year}</span>
                     </div>
                     <p style={{ fontSize: "0.875rem", color: "#5A5652", marginBottom: 16, lineHeight: 1.6 }}>{proj.tagline}</p>
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 16 }}>
                       {proj.tech.slice(0, 4).map((t) => (
                         <span key={t} className="tech-tag">{t}</span>
                       ))}
                     </div>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                      {proj.features.map((f) => (
+                        <span key={f} style={{ fontSize: "0.72rem", color: "#5A5652", display: "flex", alignItems: "center", gap: 5 }}>
+                          <span style={{ color: "#3D6B68" }}>·</span> {f}
+                        </span>
+                      ))}
+                    </div>
                   </div>
 
-                  <div className="proj-arrow" style={{ color: "#6EC6BE" }}>
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <path d="M7 17L17 7M17 7H7M17 7v10" />
-                    </svg>
+                  {/* GitHub Repo Button */}
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 16, flexShrink: 0 }}>
+                    <a
+                      href={proj.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="repo-btn"
+                      style={{ cursor: "pointer" }}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                        <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                      </svg>
+                      View Repo
+                    </a>
+                    <div className="proj-arrow" style={{ color: "#6EC6BE" }}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M7 17L17 7M17 7H7M17 7v10" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
-              </a>
+              </div>
             ))}
           </div>
         </div>
@@ -562,7 +677,7 @@ const App = () => {
             <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontSize: "clamp(2rem, 4vw, 3rem)", color: "#3D6B68" }}>Touch</span>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
+          <div className="contact-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
             <div data-animate="contact" className={`reveal ${visibleSections.has("contact") ? "visible" : ""}`}>
               <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "#8A8480", marginBottom: 40 }}>
                 Open to new opportunities, collaborations, and interesting conversations. Whether it's a project idea or just a hello — I'd love to hear from you.
@@ -582,12 +697,12 @@ const App = () => {
                 <div>
                   <span style={{ fontSize: "0.7rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "#3D6B68", display: "block", marginBottom: 12, fontWeight: 600 }}>Elsewhere</span>
                   <div style={{ display: "flex", gap: 12 }}>
-                    <a href="https://github.com/Hasna17806" target="_blank" rel="noopener noreferrer" className="social-icon">
+                    <a href="https://github.com/Hasna17806" target="_blank" rel="noopener noreferrer" className="social-icon" title="GitHub">
                       <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
                         <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
                       </svg>
                     </a>
-                    <a href="https://www.linkedin.com/in/hasna-hamza-087823403/" target="_blank" rel="noopener noreferrer" className="social-icon">
+                    <a href="https://www.linkedin.com/in/hasna-hamza-087823403/" target="_blank" rel="noopener noreferrer" className="social-icon" title="LinkedIn">
                       <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451c.979 0 1.771-.773 1.771-1.729V1.729C24 .774 23.203 0 22.225 0z" />
                       </svg>
@@ -600,7 +715,7 @@ const App = () => {
             <div data-animate="contact2" className={`reveal reveal-delay-2 ${visibleSections.has("contact") ? "visible" : ""}`}
               style={{ padding: "48px", border: "1px solid rgba(255,255,255,0.06)", background: "rgba(110,198,190,0.03)", position: "relative", overflow: "hidden",
                 clipPath: "polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%)" }}>
-              <div style={{ position: "absolute", top: 0, right: 0, width: 60, height: 1, background: "#6EC6BE", transformOrigin: "right", animation: `${visibleSections.has("contact") ? "lineGrow 0.8s 0.5s both" : "none"}` }} />
+              <div style={{ position: "absolute", top: 0, right: 0, width: 60, height: 1, background: "#6EC6BE", transformOrigin: "right" }} />
               <div style={{ position: "absolute", top: 0, right: 0, width: 1, height: 60, background: "#6EC6BE" }} />
 
               <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontSize: "1.4rem", color: "#6EC6BE", lineHeight: 1.6, marginBottom: 24 }}>
@@ -620,7 +735,7 @@ const App = () => {
             <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.95rem", color: "#E8E6E1" }}>Hasna</span>
             <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: "#3D6B68", fontSize: "0.95rem" }}>Hamza</span>
           </div>
-          <span style={{ fontSize: "0.72rem", color: "#3D4A48", letterSpacing: "0.06em" }}>© 2024 — All rights reserved</span>
+          <span style={{ fontSize: "0.72rem", color: "#3D4A48", letterSpacing: "0.06em" }}>© 2025 – 2026 — All rights reserved</span>
           <div style={{ display: "flex", gap: 24 }}>
             {navItems.map((item) => (
               <button key={item} onClick={() => scrollToSection(item)}
