@@ -323,15 +323,23 @@ const projects = [
         .project-card:hover .proj-index { color: #C9A876; }
         .project-card:hover .proj-shot img { transform: scale(1.05); }
 
+        
         .proj-shot {
-          position: relative; width: 100%; aspect-ratio: 16 / 10;
-          overflow: hidden; background: rgba(255,255,255,0.03);
-          border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-        .proj-shot img {
-          width: 100%; height: 100%; object-fit: cover; object-position: top;
-          transition: transform 0.5s ease; display: block;
-        }
+        position: relative; 
+        width: 200%; 
+        height: 250px; /* Fixed height makes image box bigger */
+        overflow: hidden; 
+        background: rgba(255,255,255,0.03);
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+      }
+      .proj-shot img {
+        width: 60%; 
+        height: 100%; 
+        object-fit: cover; 
+        object-position: top;
+        transition: transform 0.5s ease; 
+        display: block;
+      }
         .proj-shot-fallback {
           position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
           color: #4A4030; font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.8rem;
