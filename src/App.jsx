@@ -80,12 +80,24 @@ const App = () => {
 
     { name: "MongoDB", cat: "Database" },
     { name: "Mongoose", cat: "Database" },
+    { name: "PostgreSQL", cat: "Database" },
 
     { name: "NextAuth.js", cat: "Authentication" },
     { name: "JWT", cat: "Authentication" },
     { name: "Authentication", cat: "Authentication" },
     { name: "Authorization", cat: "Authentication" },
     { name: "Protected Routes", cat: "Authentication" },
+
+    { name: "Docker", cat: "DevOps & Cloud" },
+    { name: "Docker Compose", cat: "DevOps & Cloud" },
+    { name: "GitHub Actions", cat: "DevOps & Cloud" },
+    { name: "CI/CD", cat: "DevOps & Cloud" },
+    { name: "AWS EC2", cat: "DevOps & Cloud" },
+    { name: "Amazon S3", cat: "DevOps & Cloud" },
+    { name: "IAM", cat: "DevOps & Cloud" },
+    { name: "Nginx", cat: "DevOps & Cloud" },
+    { name: "HTTPS / SSL", cat: "DevOps & Cloud" },
+    { name: "Production Architecture Design", cat: "DevOps & Cloud" },
 
     { name: "Git", cat: "Tools" },
     { name: "GitHub", cat: "Tools" },
@@ -101,7 +113,7 @@ const App = () => {
     { name: "Data Structures & Algorithms", cat: "Concepts" },
   ];
 
-  const skillCategories = ["Frontend", "State Management", "Backend", "Database", "Authentication", "Tools", "Concepts"];
+  const skillCategories = ["Frontend", "State Management", "Backend", "Database", "Authentication", "DevOps & Cloud", "Tools", "Concepts"];
 
 const projects = [
   {
@@ -624,7 +636,7 @@ const projects = [
                 fontSize: "1.05rem", lineHeight: 1.75, color: "#A79A87",
                 maxWidth: 560, marginBottom: 40, animation: "fadeUp 0.7s 0.35s both",
               }}>
-                Full Stack Developer passionate about building responsive and practical web applications — from pixel-perfect interfaces to REST APIs backed by MongoDB. Currently building with Next.js and TypeScript, and sharpening my problem-solving through DSA.
+                Full Stack Developer passionate about building responsive and practical web applications — from pixel-perfect interfaces to REST APIs backed by MongoDB and PostgreSQL, deployed on AWS with Docker and CI/CD pipelines. Currently building with Next.js and TypeScript, and sharpening my problem-solving through DSA.
               </p>
 
               <div style={{ display: "flex", flexWrap: "wrap", gap: 16, animation: "fadeUp 0.7s 0.45s both" }}>
@@ -699,7 +711,7 @@ const projects = [
             <div className="marquee-track">
               {[...Array(2)].map((_, dup) => (
                 <React.Fragment key={dup}>
-                  {["MERN Stack", "React.js", "Next.js", "TypeScript", "Node.js", "MongoDB", "REST APIs"].map((t) => (
+                  {["MERN Stack", "React.js", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Docker", "AWS", "CI/CD"].map((t) => (
                     <span key={t + dup} className="marquee-item">
                       {t} <span className="solid">●</span>
                     </span>
@@ -730,10 +742,10 @@ const projects = [
           >
             <div className={`reveal ${visibleSections.has("about") ? "visible" : ""}`} data-animate="about">
               <p style={{ fontSize: "1.1rem", lineHeight: 1.85, color: "#A79A87", marginBottom: 28 }}>
-                I'm a Full Stack Developer with hands-on experience across the MERN stack, gained through a year-long internship and a series of self-built projects. I enjoy working on both the frontend and backend — from crafting responsive React interfaces to designing REST APIs and data models in MongoDB.
+                I'm a Full Stack Developer with hands-on experience across the MERN stack, gained through a year-long internship and a series of self-built projects. I enjoy working on both the frontend and backend — from crafting responsive React interfaces to designing REST APIs and data models in MongoDB and PostgreSQL.
               </p>
               <p style={{ fontSize: "1.1rem", lineHeight: 1.85, color: "#A79A87", marginBottom: 40 }}>
-                Lately I've been building with Next.js and TypeScript, adding authentication flows with NextAuth.js, and getting more comfortable with protected routes and full CRUD applications end to end. I'm also strengthening my problem-solving through Data Structures & Algorithms and continuing to learn Git/GitHub workflows along the way.
+                Lately I've been building with Next.js and TypeScript, adding authentication flows with NextAuth.js, and getting more comfortable with protected routes and full CRUD applications end to end. I've also started taking projects beyond the code editor — containerizing apps with Docker, automating deployments with GitHub Actions, and hosting them on AWS EC2 behind Nginx with HTTPS, using S3 and IAM along the way. I'm also strengthening my problem-solving through Data Structures & Algorithms and continuing to learn Git/GitHub workflows.
               </p>
 
               {/* Experience Card */}
@@ -751,7 +763,9 @@ const projects = [
                     "Developed responsive web apps using the MERN Stack",
                     "Built reusable React components & responsive UIs",
                     "Integrated REST APIs & connected frontend with backend services",
-                    "Worked with MongoDB for database design & CRUD operations",
+                    "Worked with MongoDB & PostgreSQL for database design & CRUD operations",
+                    "Containerized apps with Docker & set up CI/CD pipelines with GitHub Actions",
+                    "Deployed applications on AWS EC2 with Nginx, HTTPS, S3 & IAM",
                   ].map((item) => (
                     <li key={item} style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: "0.82rem", color: "#6B5F4F", lineHeight: 1.6 }}>
                       <span style={{ color: "#C9A876", marginTop: 4, flexShrink: 0, fontSize: "0.55rem" }}>◆</span>
@@ -802,8 +816,9 @@ const projects = [
               {[
                 { title: "Frontend Development", desc: "Responsive UIs with React.js, Next.js, Redux Toolkit, Tailwind CSS & modern animations", icon: "⬡" },
                 { title: "Backend Development", desc: "RESTful APIs with Node.js & Express.js, and Next.js API routes for scalable services", icon: "⬡" },
-                { title: "Database Management", desc: "MongoDB & Mongoose for efficient, well-modeled data — with growing PostgreSQL knowledge", icon: "⬡" },
+                { title: "Database Management", desc: "MongoDB, Mongoose & PostgreSQL for efficient, well-modeled relational and document data", icon: "⬡" },
                 { title: "Auth & Tooling", desc: "NextAuth.js, JWT & protected routes, plus Figma, Git and Postman in the daily workflow", icon: "⬡" },
+                { title: "DevOps & Cloud Deployment", desc: "Docker & Docker Compose, GitHub Actions CI/CD, AWS EC2, S3 & IAM, Nginx reverse proxy with HTTPS, and designing production architecture", icon: "⬡" },
               ].map((svc, i) => (
                 <div key={svc.title}
                   className={`reveal reveal-delay-${i + 1} ${visibleSections.has("about") ? "visible" : ""}`}
@@ -975,16 +990,6 @@ const projects = [
                   </a>
                 </div>
 
-                {/* <div>
-                  <span style={{ fontSize: "0.7rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "#9C7C42", display: "block", marginBottom: 8, fontWeight: 600 }}>Phone</span>
-                  <a href="tel:+919074240464" className="contact-link">
-                    +91 9074240464
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </a>
-                </div> */}
-
                 <div>
                   <span style={{ fontSize: "0.7rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "#9C7C42", display: "block", marginBottom: 12, fontWeight: 600 }}>Elsewhere</span>
                   <div style={{ display: "flex", gap: 12 }}>
@@ -993,11 +998,6 @@ const projects = [
                         <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
                       </svg>
                     </a>
-                    {/* <a href="https://www.linkedin.com/in/hasna-hamza-087823403/" target="_blank" rel="noopener noreferrer" className="social-icon" title="LinkedIn">
-                      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451c.979 0 1.771-.773 1.771-1.729V1.729C24 .774 23.203 0 22.225 0z" />
-                      </svg>
-                    </a> */}
                   </div>
                 </div>
               </div>
