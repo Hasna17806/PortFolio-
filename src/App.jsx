@@ -19,34 +19,25 @@ const App = () => {
   const form = useRef();
 
   const sendEmail = (e) => {
-  e.preventDefault();
+    e.preventDefault();
+    setFormStatus("Sending...");
 
-  setFormStatus("Sending...");
-
-  emailjs
-    .sendForm(
-      "service_h6d12q3",
-      "template_koi5ibw",
-      form.current,
-      {
+    emailjs
+      .sendForm("service_h6d12q3", "template_koi5ibw", form.current, {
         publicKey: "lE3DzxW6N8Fc0ONDP",
-      }
-    )
-    .then(
-      () => {
-        setFormStatus("Message sent successfully!");
-        e.target.reset();
-
-        setTimeout(() => {
-          setFormStatus("");
-        }, 4000);
-      },
-      (error) => {
-        console.error("EmailJS Error:", error);
-        setFormStatus("Something went wrong. Please try again.");
-      }
-    );
-};
+      })
+      .then(
+        () => {
+          setFormStatus("Message sent successfully!");
+          e.target.reset();
+          setTimeout(() => setFormStatus(""), 4000);
+        },
+        (error) => {
+          console.error("EmailJS Error:", error);
+          setFormStatus("Something went wrong. Please try again.");
+        }
+      );
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -370,21 +361,21 @@ const projects = [
 
         
         .proj-shot {
-        position: relative; 
-        width: 200%; 
-        height: 250px; /* Fixed height makes image box bigger */
-        overflow: hidden; 
-        background: rgba(255,255,255,0.03);
-        border-bottom: 1px solid rgba(255,255,255,0.06);
-      }
-      .proj-shot img {
-        width: 60%; 
-        height: 100%; 
-        object-fit: cover; 
-        object-position: top;
-        transition: transform 0.5s ease; 
-        display: block;
-      }
+          position: relative;
+          width: 100%;
+          aspect-ratio: 16 / 10;
+          overflow: hidden;
+          background: rgba(255,255,255,0.03);
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .proj-shot img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: top center;
+          transition: transform 0.5s ease;
+          display: block;
+        }
         .proj-shot-fallback {
           position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
           color: #4A4030; font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.8rem;
@@ -551,28 +542,99 @@ const projects = [
         .form-field:focus { outline: none; border-color: #C9A876; }
         .form-field::placeholder { color: #6B5F4F; }
 
-        @media (max-width: 768px) {
-          .desktop-nav { display: none !important; }
-          .mobile-btn { display: flex !important; }
-          .hero-heading { font-size: clamp(2.8rem, 12vw, 4rem) !important; }
-          .about-grid { grid-template-columns: 1fr !important; }
-          .stat-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          .contact-grid { grid-template-columns: 1fr !important; }
-          .projects-grid { grid-template-columns: 1fr !important; }
-          .hero-top-row { flex-direction: column-reverse !important; align-items: center !important; }
-          .hero-visual { width: 240px !important; height: 260px !important; margin: 0 auto 24px; }
-          .hero-visual .profile-photo-frame { width: 180px !important; height: 210px !important; }
-          .hero-outline-text { font-size: 3.4rem !important; }
-          .tech-badge { padding: 6px 10px !important; font-size: 0.62rem !important; }
-          .hero-spin-ring { inset: -12px !important; }
-          .marquee-item { font-size: 0.95rem !important; padding: 0 18px !important; }
+        /* Touch devices: the custom cursor is meaningless, restore native behaviour */
+        @media (hover: none), (pointer: coarse) {
+          body { cursor: auto !important; }
+          #custom-cursor, #cursor-follower { display: none !important; }
+          .nav-link, .primary-btn, .ghost-btn, .ghost-btn-sm,
+          .social-icon, .tech-badge, .mobile-btn { cursor: pointer !important; }
+          .project-card:hover, .primary-btn:hover, .ghost-btn:hover,
+          .ghost-btn-sm:hover, .repo-btn:hover, .demo-btn:hover,
+          .social-icon:hover { transform: none !important; }
         }
+
         @media (min-width: 769px) and (max-width: 1080px) {
           .projects-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .about-grid, .contact-grid { gap: 48px !important; }
         }
         @media (min-width: 769px) {
           .mobile-btn { display: none !important; }
           .mobile-nav-panel { display: none !important; }
+        }
+
+        @media (max-width: 768px) {
+          .desktop-nav { display: none !important; }
+          .mobile-btn { display: flex !important; }
+
+          /* Section rhythm & side padding */
+          nav { padding: 0 20px !important; }
+          #home { padding: 0 20px !important; }
+          #about, #skills, #projects, #contact { padding: 80px 20px !important; }
+          footer { padding: 28px 20px !important; }
+          #about > div > div:first-child,
+          #skills > div > div:first-child,
+          #projects > div > div:first-child,
+          #contact > div > div:first-child { margin-bottom: 44px !important; }
+
+          /* Mobile nav panel */
+          .mobile-nav-panel { padding: 20px !important; max-height: calc(100vh - 72px); overflow-y: auto; }
+          .mobile-nav-panel button { font-size: 1.6rem !important; padding: 10px 0 !important; }
+
+          /* Hero */
+          .hero-heading { font-size: clamp(2.4rem, 11vw, 3.4rem) !important; margin-bottom: 24px !important; }
+          .hero-top-row { flex-direction: column-reverse !important; align-items: center !important; gap: 8px !important; }
+          .hero-visual { width: 230px !important; height: 250px !important; margin: 0 auto 28px; transform: none !important; }
+          .hero-visual .profile-photo-frame { width: 170px !important; height: 200px !important; }
+          .hero-outline-text { font-size: 3rem !important; }
+          .tech-badge { padding: 5px 9px !important; font-size: 0.6rem !important; gap: 5px !important; }
+          .hero-spin-ring { inset: -10px !important; }
+          .marquee-item { font-size: 0.9rem !important; padding: 0 16px !important; }
+          #home > div:last-child { display: none !important; } /* scroll hint collides with marquee */
+
+          /* Full-width CTA buttons stack cleanly */
+          .primary-btn, .ghost-btn {
+            width: 100%; justify-content: center;
+            padding: 15px 20px !important;
+          }
+
+          /* Stats */
+          .stat-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 10px !important; max-width: 100% !important; margin-top: 36px !important; }
+          .stat-card { padding: 16px 8px !important; }
+          .stat-card > div:first-of-type { font-size: 1.5rem !important; }
+          .stat-card > div:last-of-type { font-size: 0.58rem !important; letter-spacing: 0.06em !important; }
+
+          /* About */
+          .about-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .about-grid > div:first-child > p { font-size: 0.98rem !important; line-height: 1.75 !important; }
+          .exp-card { padding: 22px 20px !important; }
+
+          /* Skills */
+          .skill-pill { padding: 8px 14px !important; font-size: 0.75rem !important; }
+
+          /* Projects */
+          .projects-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+          .proj-shot { aspect-ratio: 16 / 9; }
+
+          /* Contact */
+          .contact-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .contact-form { padding: 24px 20px !important; }
+          .contact-link { font-size: 0.92rem !important; word-break: break-word; }
+          .form-field { font-size: 16px !important; } /* prevents iOS zoom on focus */
+
+          /* Footer */
+          footer > div { flex-direction: column !important; text-align: center; gap: 14px !important; }
+          footer > div > div:last-child { flex-wrap: wrap; justify-content: center; gap: 14px !important; }
+        }
+
+        @media (max-width: 420px) {
+          #about, #skills, #projects, #contact { padding: 64px 16px !important; }
+          #home { padding: 0 16px !important; }
+          nav { padding: 0 16px !important; }
+          .hero-visual { width: 200px !important; height: 225px !important; }
+          .hero-visual .profile-photo-frame { width: 150px !important; height: 180px !important; }
+          .hero-outline-text { font-size: 2.5rem !important; }
+          .stat-card { padding: 14px 6px !important; }
+          .stat-card > div:first-of-type { font-size: 1.3rem !important; }
         }
       `}</style>
 
@@ -1044,21 +1106,14 @@ const projects = [
               </div>
             </div>
 
-           <form
+            <form
               ref={form}
               data-animate="contact2"
-              className={`reveal reveal-delay-2 ${visibleSections.has("contact") ? "visible" : ""}`}
+              className={`contact-form reveal reveal-delay-2 ${visibleSections.has("contact") ? "visible" : ""}`}
               onSubmit={sendEmail}
-              style={{
-                padding: "40px",
-                border: "1px solid rgba(255,255,255,0.06)",
-                background: "rgba(255,255,255,0.015)",
-                clipPath: "polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%)",
-                display: "flex",
-                flexDirection: "column",
-                gap: 18
-              }}
-              >
+              style={{ padding: "40px", border: "1px solid rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.015)",
+                clipPath: "polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%)", display: "flex", flexDirection: "column", gap: 18 }}
+            >
               <div>
                 <label style={{ fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#9C7C42", display: "block", marginBottom: 8, fontWeight: 600 }}>Name</label>
                 <input required name="name" type="text" placeholder="Your name" className="form-field" />
@@ -1079,16 +1134,10 @@ const projects = [
               </button>
 
               {formStatus && (
-                <p
-                  style={{
-                    marginTop: 8,
-                    textAlign: "center",
-                    fontSize: "0.85rem",
-                    color: formStatus.includes("successfully")
-                      ? "#C9A876"
-                      : "#A79A87",
-                  }}
-                >
+                <p style={{
+                  marginTop: 8, textAlign: "center", fontSize: "0.85rem",
+                  color: formStatus.includes("successfully") ? "#C9A876" : "#A79A87",
+                }}>
                   {formStatus}
                 </p>
               )}
