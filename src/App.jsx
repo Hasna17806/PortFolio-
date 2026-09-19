@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import emailjs from "@emailjs/browser";
 import profile from "./assets/profile.png"
 import resume from "./assets/Hasna Hamza - MernStack Developer.pdf";
 import zenly from "./assets/Zenly.png";
@@ -13,7 +14,39 @@ const App = () => {
   const [scrolled, setScrolled] = useState(false);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [visibleSections, setVisibleSections] = useState(new Set());
+  const [formStatus, setFormStatus] = useState("");
   const observerRef = useRef(null);
+  const form = useRef();
+
+  const sendEmail = (e) => {
+  e.preventDefault();
+
+  setFormStatus("Sending...");
+
+  emailjs
+    .sendForm(
+      "service_h6d12q3",
+      "template_koi5ibw",
+      form.current,
+      {
+        publicKey: "lE3DzxW6N8Fc0ONDP",
+      }
+    )
+    .then(
+      () => {
+        setFormStatus("Message sent successfully!");
+        e.target.reset();
+
+        setTimeout(() => {
+          setFormStatus("");
+        }, 4000);
+      },
+      (error) => {
+        console.error("EmailJS Error:", error);
+        setFormStatus("Something went wrong. Please try again.");
+      }
+    );
+};
 
   useEffect(() => {
     const handleScroll = () => {
@@ -1011,17 +1044,21 @@ const projects = [
               </div>
             </div>
 
-            <form
+           <form
+              ref={form}
               data-animate="contact2"
               className={`reveal reveal-delay-2 ${visibleSections.has("contact") ? "visible" : ""}`}
-              onSubmit={(e) => {
-                e.preventDefault();
-                const data = new FormData(e.target);
-                window.location.href = `mailto:hasnahamza807@gmail.com?subject=${encodeURIComponent("Portfolio contact from " + data.get("name"))}&body=${encodeURIComponent(data.get("message") + "\n\nFrom: " + data.get("email"))}`;
+              onSubmit={sendEmail}
+              style={{
+                padding: "40px",
+                border: "1px solid rgba(255,255,255,0.06)",
+                background: "rgba(255,255,255,0.015)",
+                clipPath: "polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%)",
+                display: "flex",
+                flexDirection: "column",
+                gap: 18
               }}
-              style={{ padding: "40px", border: "1px solid rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.015)",
-                clipPath: "polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%)", display: "flex", flexDirection: "column", gap: 18 }}
-            >
+              >
               <div>
                 <label style={{ fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#9C7C42", display: "block", marginBottom: 8, fontWeight: 600 }}>Name</label>
                 <input required name="name" type="text" placeholder="Your name" className="form-field" />
@@ -1040,6 +1077,21 @@ const projects = [
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </button>
+
+              {formStatus && (
+                <p
+                  style={{
+                    marginTop: 8,
+                    textAlign: "center",
+                    fontSize: "0.85rem",
+                    color: formStatus.includes("successfully")
+                      ? "#C9A876"
+                      : "#A79A87",
+                  }}
+                >
+                  {formStatus}
+                </p>
+              )}
             </form>
           </div>
         </div>
